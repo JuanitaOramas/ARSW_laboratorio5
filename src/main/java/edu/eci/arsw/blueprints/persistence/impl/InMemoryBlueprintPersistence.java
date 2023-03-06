@@ -31,7 +31,7 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
 
         // Blueprint 1
         Point[] pts=new Point[]{new Point(140, 140),new Point(115, 115)};
-        Blueprint bp=new Blueprint("juan", "planito ",pts);
+        Blueprint bp=new Blueprint("sam", "planito",pts);
 
         // Blueprint 2
         Point[] pts2=new Point[]{new Point(160, 141),new Point(153, 155)};
@@ -39,11 +39,11 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
 
         // Blueprint 3
         Point[] pts3=new Point[]{new Point(154, 254),new Point(147, 145)};
-        Blueprint bp3=new Blueprint("sam", "planito2 ",pts3);
+        Blueprint bp3=new Blueprint("sam", "planito2",pts3);
 
         // Blueprint 4
         Point[] pts4=new Point[]{new Point(154, 254),new Point(147, 145)};
-        Blueprint bp4=new Blueprint("wilson", "planito3 ",pts4);
+        Blueprint bp4=new Blueprint("wilson", "planito3",pts4);
 
 
 
@@ -70,9 +70,6 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
 
     @Override
     public Blueprint getBlueprint(String author, String bprintname) throws BlueprintNotFoundException {
-        // 1. recorrer las llaves del hash
-        // 2. por cada tupla comparar si es (autor y name son iguales a los del parametro)
-        // 3. llorar
 
         return blueprints.get(new Tuple<>(author, bprintname));
     }
