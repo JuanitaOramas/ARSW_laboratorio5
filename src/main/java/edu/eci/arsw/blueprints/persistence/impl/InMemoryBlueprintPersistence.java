@@ -68,6 +68,7 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
         }        
     }
 
+
     @Override
     public Blueprint getBlueprint(String author, String bprintname) throws BlueprintNotFoundException {
 
@@ -101,6 +102,13 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
         }
 
         return myBlueprints;
+    }
+
+    @Override
+    public Blueprint updateBlueprint(Blueprint bp, String author, String name) throws BlueprintNotFoundException, BlueprintPersistenceException {
+        blueprints.remove(new Tuple<>(author, name));
+        saveBlueprint(bp);
+        return bp;
     }
 
 

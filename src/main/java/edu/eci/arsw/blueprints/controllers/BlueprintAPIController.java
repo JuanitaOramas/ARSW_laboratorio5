@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import edu.eci.arsw.blueprints.model.Blueprint;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
 import edu.eci.arsw.blueprints.services.BlueprintsServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,30 @@ public class BlueprintAPIController {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> createBluePrint(@RequestBody Blueprint bp){
+        try {
+            bs.addNewBlueprint(bp);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {
+            Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error create Blueprint",HttpStatus.FORBIDDEN);
+        }
+
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/{author}/{bpname}")
+    public ResponseEntity<?> updateBluePrint(@RequestBody Blueprint bp, @PathVariable String author, @PathVariable String bpname){
+        try {
+            bs.updateBlueprint(bp, author, bpname);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {
+            Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error create Blueprint",HttpStatus.FORBIDDEN);
+        }
+
     }
 
     @GetMapping("/{author}") // localhost/blueprints/sam

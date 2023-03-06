@@ -61,5 +61,9 @@ public class BlueprintsServices {
 
         return bpp.getBlueprintsByAuthor(author);
     }
+
+    public Blueprint updateBlueprint(Blueprint bp, String author, String name) throws BlueprintNotFoundException, BlueprintPersistenceException {
+        return bpp.updateBlueprint(bp,  author,  name);
+    }
     
 }
