@@ -42,8 +42,10 @@ public class BlueprintAPIController {
 
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
+
         }
     }
+
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> createBluePrint(@RequestBody Blueprint bp){
