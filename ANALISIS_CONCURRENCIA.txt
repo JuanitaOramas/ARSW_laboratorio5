@@ -1,0 +1,14 @@
+Integrantes: Juanita Oramas  y Wilson Delgado
+
+ANÁLISIS DE CONCURRENCIA
+
+Las condiciones de carrera fueron:
+    - Al momento de agregar (usando una petición POST), actualizar (usando una petición PUT) o consultar un blueprint (usando una petición GET)
+    al mismo tiempo.
+
+La región crítica encontrada fue:
+    - El Map de blueprints dado que si hay muchos subprocesos intentando acceder al recurso y no se sincroniza su acceso
+    puede generar problemas de integridad por las condiciones de carrera.
+
+Solución:
+    El Map de blueprints se cambia a un tipo de dato de concurrentHashMap, el cual permite que varios subprocesos accedan y modifiquen el mapa al mismo tiempo sin provocar condiciones de carrera.
