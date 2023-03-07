@@ -1,4 +1,5 @@
-Integrantes: Juanita Oramas  y Wilson Delgado
+Integrantes: Juanita Oramas y Wilson Delgado
+
 
 ANÁLISIS DE CONCURRENCIA
 
