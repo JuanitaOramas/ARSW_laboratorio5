@@ -12,9 +12,7 @@ import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -36,7 +34,7 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
 
         // Blueprint 2
         Point[] pts2=new Point[]{new Point(160, 141),new Point(153, 155)};
-        Blueprint bp2=new Blueprint("sam", "planito1",pts2);
+        Blueprint bp2=new Blueprint("juanita", "planito1",pts2);
 
         // Blueprint 3
         Point[] pts3=new Point[]{new Point(154, 254),new Point(147, 145)};
@@ -110,6 +108,12 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
         blueprints.remove(new Tuple<>(author, name));
         saveBlueprint(bp);
         return bp;
+    }
+
+    @Override
+    public void deleteBlueprint(String author, String name) {
+        blueprints.remove(new Tuple<>(author, name));
+
     }
 
 

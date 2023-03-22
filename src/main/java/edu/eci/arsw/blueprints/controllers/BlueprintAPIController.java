@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST,RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping(value = "/blueprints")
 public class BlueprintAPIController {
 
@@ -64,10 +64,23 @@ public class BlueprintAPIController {
     public ResponseEntity<?> updateBluePrint(@RequestBody Blueprint bp, @PathVariable String author, @PathVariable String bpname){
         try {
             bs.updateBlueprint(bp, author, bpname);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error create Blueprint",HttpStatus.FORBIDDEN);
+        }
+
+    }
+
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{author}/{bpname}")
+    public ResponseEntity<?> deleteBluePrint( @PathVariable String author, @PathVariable String bpname){
+        try {
+            bs.deleteBluePrint(author, bpname);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception ex) {
+            Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error delete Blueprint",HttpStatus.FORBIDDEN);
         }
 
     }
